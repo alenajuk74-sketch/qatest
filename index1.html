@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Алексей Петров - Junior QA Engineer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif; 
+            line-height: 1.6; 
+            color: #2c3e50; 
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); 
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header { 
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); 
+            color: white; 
+            text-align: center; 
+            padding: 4rem 2rem; 
+            border-radius: 20px; 
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+        header > * { position: relative; z-index: 1; }
+        header h1 { font-size: 3.2em; margin-bottom: 0.5em; }
+        .subtitle { font-size: 1.4em; opacity: 0.95; margin-bottom: 1.5rem; }
+        .contacts { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 1.5rem; 
+            margin-top: 1.5rem; 
+        }
+        .contact-item { 
+            background: rgba(255,255,255,0.2); 
+            padding: 1.2rem; 
+            border-radius: 15px; 
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .contact-item:hover { transform: translateY(-5px); background: rgba(255,255,255,0.3); }
+        nav { 
+            background: rgba(255,255,255,0.95); 
+            backdrop-filter: blur(20px); 
+            padding: 1.2rem; 
+            border-radius: 20px; 
+            margin-bottom: 2.5rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        nav ul { 
+            display: flex; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            list-style: none; 
+            gap: 2.5rem; 
+        }
+        nav a { 
+            color: #2563eb; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 1.15em;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        nav a:hover { color: #1e40af; }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: #2563eb;
+            transition: all 0.3s ease;
+        }
+        nav a:hover::after { width: 100%; left: 0; }
+        
+        section { 
+            background: rgba(255,255,255,0.97); 
+            backdrop-filter: blur(15px); 
+            padding: 3.5rem 3rem; 
+            margin-bottom: 2.5rem; 
+            border-radius: 25px; 
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        h2 { 
+            color: #2563eb; 
+            font-size: 2.4em; 
+            margin-bottom: 2rem; 
+            position: relative;
+            padding-bottom: 1.2rem;
+        }
+        h2::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 100px; 
+            height: 5px; 
+            background: linear-gradient(90deg, #2563eb, #1e40af); 
+            border-radius: 3px;
+        }
+        .skills-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 2.5rem; 
+            margin-top: 2.5rem; 
+        }
+        .skill-card { 
+            background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(37,99,235,0.1) 100%); 
+            padding: 2.5rem 2rem; 
+            border-radius: 20px; 
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(37,99,235,0.2);
+        }
+        .skill-card:hover { 
+            transform: translateY(-15px) scale(1.02); 
+            box-shadow: 0 30px 80px rgba(37,99,235,0.3); 
+        }
+        .skill-icon { font-size: 4em; margin-bottom: 1.5rem; }
+        .education-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); 
+            gap: 3rem; 
+            margin-top: 2rem; 
+        }
+        .project { 
+            background: rgba(255,255,255,0.7); 
+            padding: 2.5rem; 
+            margin-bottom: 2.5rem; 
+            border-radius: 20px; 
+            border-left: 8px solid #10b981;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .project:hover { border-left-color: #059669; transform: translateX(10px); }
+        .project h3 { color: #1f2937; margin-bottom: 1.2rem; font-size: 1.4em; }
+        .project-links { margin-top: 1.5rem; }
+        .project-links a { 
+            display: inline-block; 
+            background: linear-gradient(135deg, #2563eb, #1e40af); 
+            color: white; 
+            padding: 0.8rem 2rem; 
+            border-radius: 30px; 
+            text-decoration: none; 
+            margin-right: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .project-links a:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(37,99,235,0.4); }
+        .stats { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+            gap: 2.5rem; 
+            margin: 3rem 0;
+        }
+        .stat-item { 
+            text-align: center; 
+            padding: 2rem 1rem;
+            background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(16,185,129,0.1));
+            border-radius: 20px;
+        }
+        .stat-number { 
+            font-size: 3.5em; 
+            color: #2563eb; 
+            font-weight: 800; 
+            line-height: 1;
+        }
+        .stat-label { color: #6b7280; font-size: 1.1em; margin-top: 0.5rem; }
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+        .cta-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin: 1rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(16,185,129,0.4);
+        }
+        footer { 
+            text-align: center; 
+            padding: 3rem; 
+            color: #9ca3af; 
+            background: rgba(255,255,255,0.5);
+            border-radius: 25px;
+            margin-top: 3rem;
+        }
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2em; }
+            .subtitle { font-size: 1.2em; }
+            section { padding: 2.5rem 2rem; }
+            nav ul { flex-direction: column; gap: 1.5rem; text-align: center; }
+            .education-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Алексей Петров</h1>
+            <p class="subtitle">Junior QA Engineer | Тестировщик телеком систем</p>
+            <p style="font-size: 1.1em; opacity: 0.9;">20+ лет инженерного опыта → Переход в QA</p>
+            <div class="contacts">
+                <div class="contact-item">
+                    ������ <strong>alex.petrov@email.com</strong>
+                </div>
+                <div class="contact-item">
+                    ������ <strong>+7 (383) 123-45-67</strong>
+                </div>
+                <div class="contact-item">
+                    ������ <strong>@alex_petrov_qa</strong>
+                </div>
+                <div class="contact-item">
+                    ������ <strong>github.com/alexpetrov-qa</strong>
+                </div>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#about">О себе</a></li>
+                <li><a href="#skills">Навыки</a></li>
+                <li><a href="#education">Образование</a></li>
+                <li><a href="#projects">Проекты</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+            </ul>
+        </nav>
+
+        <section id="about">
+            <h2>О себе</h2>
+            <p><strong>Инженер с 20+ лет опыта</strong> в телекоммуникациях и системах управления переходит в QA. Глубокое понимание сетевых протоколов, Linux-администрирования и системной архитектуры.</p>
+            <p>Освоил современные инструменты тестирования (Postman, GitHub) и выполнил pet-проекты по API, Yandex.Mail и телеком-системам. Готов применять инженерный подход для поиска багов и улучшения качества ПО.</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Тест-кейсов написано</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">18</div>
+                    <div class="stat-label">Pet-проектов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">35+</div>
+                    <div class="stat-label">Найденных багов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Лет опыта</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Базовые знания</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">������</div>
+                    <h3>Postman</h3>
+                    <p>API-тестирование: REST/SOAP, OAuth2/JWT, JSON Schema validation, Newman CLI, mock servers, performance testing</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">������</div>
+                    <h3>Astra Linux</h3>
+                    <p>Администрирование: установка SE/UE, hardening (CIS), SELinux, iptables/nftables, аудит логов, контейнеризация</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">������</div>
+                    <h3>Web Stack</h3>
+                    <p>HTML5/CSS3 (Flexbox/Grid), PHP 7/8 (MVC, PDO, Composer), JavaScript basics, DevTools debugging</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">������</div>
+                    <h3>GitHub</h3>
+                    <p>Git Flow, branching strategies, GitHub Actions CI/CD, issue tracking, pull requests, code review</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Образование</h2>
+            <div class="education-grid">
+                <div>
+                    <h3>Сибирский государственный университет телекоммуникаций и информатики (СибГути)</h3>
+                    <p><strong>Сети связи и системы коммутации</strong><br>г. Новосибирск | <strong>2009</strong></p>
+                    <p>Диплом: "Оптимизация QoS в IP/MPLS сетях". Изучены протоколы SIP, H.323, RTP, MGCP.</p>
+                </div>
+                <div>
+                    <h3>Университет ИТМО</h3>
+                    <p><strong>Автоматика и управление в технических системах</strong><br>г. Санкт-Петербург | <strong>1993</strong></p>
+                    <p>Диплом: "Системы управления телекоммуникационным оборудованием". Специальность инженера-системотехника.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Опыт работы над проектами</h2>
+            
+            <div class="project">
+                <h3>������️ Astra Linux Enterprise</h3>
+                <p>Развертывание защищенной инфраструктуры: Astra Linux SE 1.8, hardening по ФСТЭК, настройка ZFS, LVM, контейнеры Docker/Podman. Тестирование совместимости телеком ПО.</p>
+                <div class="project-links">
+                    <a href="https://github.com/alexpetrov-qa/astra-linux-hardening" target="_blank">GitHub</a>
+                    <a href="#" target="_blank">Отчёт hardening (PDF)</a>
+                </div>
+            </div>
+
+            <div class="project">
+                <h3>������ REST API Testing Framework</h3>
+                <p>Коллекция Postman 150+ тест-кейсов: JSONPlaceholder, ReqRes, GitHub API, Yandex SpeechKit. Автоматизация Newman + Allure отчеты, контрактное тестирование.</p>
+                <div class="project-links">
+                    <a href="https://github.com/alexpetrov-qa/api-testing-framework" target="_blank">GitHub</a>
+                    <a href="#" target="_blank">Postman Collection</a>
+                </div>
+            </div>
+
+            <div class="project">
+                <h3>������ Yandex.Mail End-to-End</h3>
+                <p>Комплексное тестирование: веб/мобильные клиенты, SMTP/IMAP/POP3 протоколы, SPAM-фильтры, DKIM/DMARC. Выявлено 15 critical/high багов.</p>
+                <div class="project-links">
+                    <a href="https://github.com/alexpetrov-qa/yandex-mail-e2e" target="_blank">GitHub</a>
+                    <a href="#" target="_blank">Баг-трекинг</a>
+                </div>
+            </div>
+
+            <div class="project">
+                <h3>������ Телеком-системы (VoIP/SIP)</h3>
+                <p>Тестирование Asterisk PBX, Kamailio, RTP-потоки (Wireshark), SIPp load testing, NAT traversal, QoS (DiffServ), failover сценарии.</p>
+                <div class="project-links">
+                    <a href="https://github.com/alexpetrov-qa/telecom-voip-qa" target="_blank">GitHub</a>
+                    <a href="#" target="_blank">Wireshark анализ</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacts" class="cta-section">
+            <h2 style="color: white;">Готов к работе!</h2>
+            <p style="font-size: 1.3em; margin-bottom: 2rem;">Удалённый формат • Полная занятость • Релокация возможна</p>
+            <div>
+                <a href="mailto:alex.petrov@email.com" class="cta-button">������ Написать мне</a>
+                <a href="https://t.me/alex_petrov_qa" class="cta-button">������ Telegram</a>
+                <a href="https://github.com/alexpetrov-qa" class="cta-button">������‍������ GitHub</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 Алексей Петров | Junior QA Engineer | Новосибирск • Санкт-Петербург • Магнитогорск</p>
+            <p>Инженерный подход + современные инструменты = качество вашего ПО</p>
+        </footer>
+    </div>
+</body>
+</html>
